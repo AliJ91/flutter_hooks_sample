@@ -1,0 +1,17 @@
+mutation SignUpSponsor($sponsorInput: SignUpInput!) {
+    signUpSponsor(sponsorInput: $sponsorInput) {
+        accessToken
+        firstName
+        firstNameAr
+        country
+        email
+        lastName
+        lastNameAr
+        middleName
+        middleNameAr
+        phone
+        refreshToken
+        sponsorId
+        userId
+    }
+}

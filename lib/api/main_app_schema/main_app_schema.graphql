@@ -1,0 +1,76 @@
+
+#sample schema
+
+
+type Address {
+    block: String
+    building: String
+    countryId: String!
+    flat: String
+    floor: String
+    id: String!
+    isPrimary: Boolean!
+    localityId: String
+    name: String
+    street: String
+    subLocalityId: String
+    userId: String
+    way: String
+}
+
+input AddressCreateInput {
+    block: String
+    building: String
+    flat: String
+    floor: String
+    id: String
+    isPrimary: Boolean
+    name: String
+    street: String
+    way: String
+}
+
+enum PushNotificationType {
+    HOME_STOP_TRACKING
+    OTHERS
+    PAYMENT_REMINDER
+    SCHOOL_STOP_TRACKING
+    STUDENT_VEHICLE_TRACKING
+}
+
+input SignUpInput {
+    email: String
+    firstName: String!
+    lastName: String!
+    middleName: String
+    otpId: String!
+    phone: String!
+}
+
+type Query {
+
+
+   # Add queries here
+}
+
+type Mutation {
+    signUpSponsor(sponsorInput: SignUpInput!): SignUpOutput!
+
+    #add mutations here
+}
+
+type SignUpOutput {
+    accessToken: String
+    country: String!
+    email: String
+    firstName: String
+    firstNameAr: String
+    lastName: String
+    lastNameAr: String
+    middleName: String
+    middleNameAr: String
+    phone: String
+    refreshToken: String
+    sponsorId: String!
+    userId: String!
+}

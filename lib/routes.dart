@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks_sample/lifecycle/use-jwt-token.dart';
 import 'package:flutter_hooks_sample/screens/signup/signup.dart';
 import 'package:flutter_hooks_sample/screens/splash/splash.dart';
 import 'package:go_router/go_router.dart';
@@ -17,13 +18,11 @@ class RedirectOnJwtExpired extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final jwtToken = useJwtToken();
-    //  print("Access token::::: ${jwtToken?.accessToken}");
-    final lang = useLang();
     final isTokenExpired = useMemoized(
             () => (jwtToken != null && jwtToken.refreshToken.length > 5)
             ? false
             : true,
-        [jwtToken, lang]);
+        [jwtToken]);
 
     return isTokenExpired ? to : from;
   }

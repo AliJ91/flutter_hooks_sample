@@ -1,7 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_hooks_sample/config/appconfigs.dart';
+import 'package:flutter_hooks_sample/config/graphql_widget.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  final appConfig = AppConfig.fromEnvironment(const MyApp());
+  runApp(
+    ProviderScope(child: EasyLocalization(supportedLocales: const [Locale('e'),],
+        path: 'assets/translations',
+        fallbackLocale: const Locale("en"),
+        child:  GraphQLWidget(
+          realtimeUrl: "realtimeAppGqlUrl",
+          mainAppUrl:"mainAppGqlUrl",
+          mainAppWssUrl: "mainAppGqlWssUrl",
+          realtimeWssUrl: "realtimeAppGqlWssUrl",
+          child: appConfig,
+        ),
 
-void main() {
-  runApp(const MyApp());
+    )
+
+  )
+  );
 }
 
 class MyApp extends StatelessWidget {
